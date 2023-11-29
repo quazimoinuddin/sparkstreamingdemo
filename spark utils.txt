@@ -4,6 +4,9 @@ SPARK_WORKER_MEMORY=1g
 SPARK_WORKER_PORT=10001
 
 
+#Insuarance dataset
+https://www.kaggle.com/datasets/ranja7/vehicle-insurance-customer-data
+
 insurance_df = spark.read.option("header","true").csv("/home/ec2-user/AutoInsurance.csv")
 insurance_df.show(5)
 insurance_df.select('Customer','State','Income','Gender').where(insurance_df.Income > 4000).show()
