@@ -12,3 +12,7 @@ insurance_df.select('Coverage','Gender','Income').groupBy('Coverage').agg({'Inco
 
 export SPARK_HOME=/opt/spark
 export PATH=$PATH:$SPARK_HOME/bin
+
+#checking the applications through APIs
+http://44.204.176.53:4040/api/v1/applications
+http://44.204.176.53:4040/api/v1/applications/app-20231129162907-0002/jobs
