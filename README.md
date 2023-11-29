@@ -1,0 +1,24 @@
+# sparkstreamingdemo
+
+
+SPARK_MASTER_HOST=172.31.81.39
+SPARK_WORKER_CORES=1
+SPARK_WORKER_MEMORY=1g
+SPARK_WORKER_PORT=10001
+
+
+#Insuarance dataset
+https://www.kaggle.com/datasets/ranja7/vehicle-insurance-customer-data
+
+insurance_df = spark.read.option("header","true").csv("/home/ec2-user/AutoInsurance.csv")
+insurance_df.show(5)
+insurance_df.select('Customer','State','Income','Gender').where(insurance_df.Income > 4000).show()
+insurance_df.select('Customer','State','Income','Gender','Effective To Date').where(insurance_df.Income > 4000).show()
+insurance_df.select('Coverage','Gender','Income').groupBy('Coverage').agg({'Income': 'avg'}).show()
+
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin
+
+#checking the applications through APIs
+http://44.204.176.53:4040/api/v1/applications
+http://44.204.176.53:4040/api/v1/applications/app-20231129162907-0002/jobs
