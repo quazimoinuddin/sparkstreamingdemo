@@ -1,0 +1,14 @@
+SPARK_MASTER_HOST=172.31.81.39
+SPARK_WORKER_CORES=1
+SPARK_WORKER_MEMORY=1g
+SPARK_WORKER_PORT=10001
+
+
+insurance_df = spark.read.option("header","true").csv("/home/ec2-user/AutoInsurance.csv")
+insurance_df.show(5)
+insurance_df.select('Customer','State','Income','Gender').where(insurance_df.Income > 4000).show()
+insurance_df.select('Customer','State','Income','Gender','Effective To Date').where(insurance_df.Income > 4000).show()
+insurance_df.select('Coverage','Gender','Income').groupBy('Coverage').agg({'Income': 'avg'}).show()
+
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin
